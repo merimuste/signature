@@ -11,7 +11,7 @@ os.makedirs(FONT_DIR, exist_ok=True)
 
 # Download Poppins font files from Google Fonts
 FONTS = {
-    "Poppins-Regular.ttf": "https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Regular.ttf",
+    "Poppins-Light.ttf": "https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Light.ttf",
     "Poppins-Thin.ttf": "https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Thin.ttf",
 }
 
@@ -25,17 +25,17 @@ for name, url in FONTS.items():
             f.write(r.content)
         print(f"  Saved to {path}")
 
-# ── Render "Maria M. Ashtor" in Poppins Regular ──────────────────
-font_regular = ImageFont.truetype(os.path.join(FONT_DIR, "Poppins-Regular.ttf"), 72)
+# ── Render "Maria M. Ashtor" in Poppins Light ────────────────────
+font_light = ImageFont.truetype(os.path.join(FONT_DIR, "Poppins-Light.ttf"), 72)
 text_name = "Maria M. Ashtor"
 
-bbox = font_regular.getbbox(text_name)
+bbox = font_light.getbbox(text_name)
 text_w = bbox[2] - bbox[0] + 10
 text_h = bbox[3] - bbox[1] + 10
 
 img = Image.new("RGBA", (text_w, text_h + 16), (255, 255, 255, 0))
 draw = ImageDraw.Draw(img)
-draw.text((-bbox[0] + 5, -bbox[1] + 8), text_name, fill="black", font=font_regular)
+draw.text((-bbox[0] + 5, -bbox[1] + 8), text_name, fill="black", font=font_light)
 img.save(os.path.join(OUT_DIR, "name_text.png"))
 print(f"Name image: {text_w}x{text_h + 16}")
 
@@ -66,4 +66,4 @@ for ch in text_title:
 img2.save(os.path.join(OUT_DIR, "title_text.png"))
 print(f"Title image: {total_w}x{title_h + 10}")
 
-print("Done! Text images generated with Poppins Regular + Thin.")
+print("Done! Text images generated with Poppins Light + Thin.")
